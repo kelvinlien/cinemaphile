@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="150dp"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    app:cardCornerRadius="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="10">
+     <ImageView
+         android:id="@+id/iv_movie"
+         android:layout_weight="3"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:adjustViewBounds="true"
+         android:padding="5dp"
+         android:scaleType="fitCenter"
+         android:layout_gravity="center_vertical"
+         app:srcCompat="@drawable/loading"
+         android:contentDescription="@string/imageview"/>
+    <LinearLayout
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_marginLeft="3dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:textColor="@color/TextColor"
+            tools:text="Captain America : Winter Soldier"/>
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:textColor="@color/DescripColor"
+            tools:text="Captain america is soldier that have more than"/>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:textColor="@color/tabTextColor"
+            tools:text="Wednesday,12 December,2019"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="5">
+           <Button
+               android:id="@+id/btn_detail"
+               android:layout_weight="2.5"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:text="detail"
+               style="@style/ButtonGeneral"/>
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_weight="2.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="share"
+                style="@style/ButtonGeneral"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+</androidx.cardview.widget.CardView>

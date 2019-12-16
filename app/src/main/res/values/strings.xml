@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CinemaPhile</string>
+   <string-array name="my_films">
+       <item>Jcob</item>
+       <item>Starbuck</item>
+       <item>McDonald</item>
+       <item>KFC</item>
+   </string-array>
+    <string name="search">Search</string>
+    <string name="hint_search">Enter Keyword</string>
+    <string name="imageview">ImageView</string>
+
+    <string name="error_message_failed_to_fetch">Error Message Failed To Fetch</string>
+    <string name="action_settings">Share</string>
+    <string name="empty_response">Empty Search</string>
+</resources>
