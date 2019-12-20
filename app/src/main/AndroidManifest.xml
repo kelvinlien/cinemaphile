@@ -10,8 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".detailmovie.DetailMovieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,5 +26,6 @@
             android:readPermission="com.example.myapplication.READ_DATABASE"
             android:writePermission="com.example.myapplication.WRITE_DATABASE" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

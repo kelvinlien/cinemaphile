@@ -1,119 +1,150 @@
 package com.example.myapplication.detailmovie;
 
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
+import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.myapplication.network.getImageFromURL;
 
-import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.db.MovieHelper;
-import com.example.myapplication.model.MovieResponse;
-import com.google.android.material.appbar.AppBarLayout;
-import com.bumptech.glide.request.RequestOptions;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.bumptech.glide.request.RequestOptions;
+import cz.msebera.android.httpclient.Header;
 
-public class DetailMovieActivity extends AppCompatActivity {
+import com.example.myapplication.network.HttpUtils;
 
-    public static final String EXTRA_MOVIE = "extra_movie";
+import org.json.*;
 
-    private MovieHelper movieHelper;
-    private Menu menu;
-    private MenuItem menuItem;
-    private String id;
-    private boolean isStar;
-    private MovieResponse.Results extras;
+import com.loopj.android.http.*;
+
+import java.util.concurrent.ExecutionException;
+
+public class DetailMovieActivity extends Activity {
 
 
-    ImageView ivMovie;
+    ImageView Poster;
 
-    TextView tvTitle;
+    TextView MovieName;
 
-    TextView tvRate;
+    TextView Year;
 
-    TextView tvOverview;
+    TextView Rated;
 
-    TextView tvDate;
+    TextView Runtime;
 
-    Toolbar toolbar;
+    TextView IMDb;
 
-    AppBarLayout appBarLayout;
+    TextView RottenTomatoes;
+
+    TextView Metacritic;
+
+    HttpUtils client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
         ButterKnife.bind(this);
+        client = new HttpUtils();
+        Poster = findViewById(R.id.Poster);
+        MovieName = findViewById(R.id.MovieName);
+        Year = findViewById(R.id.Year);
+        Rated = findViewById(R.id.Rated);
+        Runtime = findViewById(R.id.Runtime);
+        IMDb = findViewById(R.id.IMDb_score);
+        RottenTomatoes = findViewById(R.id.RottenTomatoes_score);
+        Metacritic = findViewById(R.id.Metacritic_score);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
-        extras = getIntent().getParcelableExtra(EXTRA_MOVIE);
 
-        if (extras != null) {
-            tvTitle.setText(extras.getTitle());
-            tvRate.setText("" + extras.getVoteAverage());
-            tvOverview.setText(extras.getOverview());
-            tvDate.setText(extras.getReleaseDate());
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.detail_activity, menu);
+//        this.menu = menu;
+//        return true;
+//    }
 
-            getSupportActionBar().setTitle(extras.getTitle());
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_share:
+//                Intent shareIntent = new Intent();
+//                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                shareIntent.setType("text/plain");
+//                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Check our new movie");
+//                startActivity(shareIntent);
+//                return true;
+//            case android.R.id.home:
+//                finish();
+//                return true;
+//            default:
+//                return true;
+//        }
+//    }
 
-            if (extras.getPosterPath() != null){
-                Glide.with(this)
-                        .load("http://image.tmdb.org/t/p/w185/".concat(extras.getPosterPath()))
-                        .thumbnail(Glide.with(this).load(R.drawable.loading))
-                        .apply(new RequestOptions().error(R.drawable.reload))
-                        .into(ivMovie);
+    public void callRequest(View view) {
+        Button b = findViewById(R.id.test_button);
 
-            }else{
-                Glide.with(this)
-                        .load(R.drawable.reload)
-                        .thumbnail(Glide.with(this).load(R.drawable.loading))
-                        .apply(new RequestOptions().error(R.drawable.reload))
-                        .into(ivMovie);
+
+        b.setClickable(false);
+        b.setVisibility(View.INVISIBLE);
+        RequestParams rp = new RequestParams();
+//        rp.add("username", "aaa"); rp.add("password", "aaa@123");
+
+        HttpUtils.getByUrl("http://www.omdbapi.com/?apikey=61222a7d&t=Avengers+ +Endgame", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                Log.d("asd", "---------------- this is response : " + response);
+                try {
+                    JSONObject serverResp = new JSONObject(response.toString());
+                    String title = serverResp.getString("Title");
+                    String year = serverResp.getString("Year");
+                    String poster = serverResp.getString("Poster");
+                    String rated = serverResp.getString("Rated");
+                    String runtime = serverResp.getString("Runtime");
+                    JSONArray ratings = serverResp.getJSONArray("Ratings");
+                    JSONObject imdb = ratings.getJSONObject(0);
+                    String imdb_score = imdb.getString("Value");
+                    JSONObject roto = ratings.getJSONObject(1);
+                    String roto_score = roto.getString("Value");
+                    JSONObject meta = ratings.getJSONObject(2);
+                    String meta_score = meta.getString("Value");
+                    Bitmap bmp = null;
+                    try {
+                        bmp = new getImageFromURL().execute(poster).get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Poster.setImageBitmap(bmp);
+                    MovieName.setText((CharSequence) title);
+                    Year.setText((CharSequence)year);
+                    Rated.setText(rated);
+                    Runtime.setText(runtime);
+                    IMDb.setText(imdb_score);
+                    RottenTomatoes.setText(roto_score);
+                    Metacritic.setText(meta_score);
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
 
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                TextView tv = (TextView)findViewById(R.id.Year);
+                tv.setText((CharSequence) timeline);
 
-            id = String.valueOf(extras.getId());
-        }
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail_activity, menu);
-        this.menu = menu;
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_share:
-                Intent shareIntent = new Intent();
-                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Check our new movie");
-                startActivity(shareIntent);
-                return true;
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return true;
-        }
+            }
+        });
     }
 }
 

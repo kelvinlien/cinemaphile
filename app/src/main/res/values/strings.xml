@@ -8,9 +8,22 @@
    </string-array>
     <string name="search">Search</string>
     <string name="hint_search">Enter Keyword</string>
-    <string name="imageview">ImageView</string>
 
     <string name="error_message_failed_to_fetch">Error Message Failed To Fetch</string>
     <string name="action_settings">Share</string>
     <string name="empty_response">Empty Search</string>
+    <string name="title">Avenger</string>
+    <string name="imdb">0</string>
+    <string name="poster">Avenger</string>
+    <string name="logo">logo</string>
+    <string name="loading">Loading...</string>
+    <string name="load">load</string>
+    <string name ="poster_description">Poster Of The Current Film</string>
+    <string name="movie_name">Liem Tran</string>
+    <string name="year">1999</string>
+    <string name="rated">R</string>
+    <string name="runtime">10min</string>
+    <string name="imdb_score">6.9</string>
+    <string name="rottentomatoes_score">6.9</string>
+    <string name="metacritic_score">6.9</string>
 </resources>

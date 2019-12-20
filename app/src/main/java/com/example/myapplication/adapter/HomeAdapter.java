@@ -73,7 +73,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
 
                 Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
-                intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
+//                intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
 
                 v.getContext().startActivity(intent);
             }
@@ -135,7 +135,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
 
                     Intent intent = new Intent(v.getContext(), DetailMovieActivity.class);
-                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
+//                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movieResponse);
 
                     v.getContext().startActivity(intent);
                 }

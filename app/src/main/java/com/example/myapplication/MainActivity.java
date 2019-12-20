@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout=findViewById(R.id.tablayout_id);
         viewPager=findViewById(R.id.viewpager_id);
 
-
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());//viewpager adapater
+
         //adding adapter
 
         viewPagerAdapter.AddFragment(new FragmentNews(),"news");
