@@ -6,17 +6,23 @@ import android.view.Menu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.myapplication.adapter.HomeAdapter;
+import com.example.myapplication.model.movie_item;
 import com.example.myapplication.news.FragmentNews;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
-    FragmentMovie a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());//viewpager adapater
-        //adding adapter
+        //adding Fragment
 
         viewPagerAdapter.AddFragment(new FragmentNews(),"news");
         viewPagerAdapter.AddFragment(new FragmentMovie(),"movie");

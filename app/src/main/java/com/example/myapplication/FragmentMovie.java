@@ -10,8 +10,7 @@ import android.widget.GridView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class FragmentMovie extends Fragment {
     View view;
