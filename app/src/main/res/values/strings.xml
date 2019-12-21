@@ -20,10 +20,10 @@
     <string name="load">load</string>
     <string name ="poster_description">Poster Of The Current Film</string>
     <string name="movie_name">Liem Tran</string>
-    <string name="year">1999</string>
-    <string name="rated">R</string>
-    <string name="runtime">10min</string>
-    <string name="imdb_score">6.9</string>
-    <string name="rottentomatoes_score">6.9</string>
-    <string name="metacritic_score">6.9</string>
+    <string name="year">____</string>
+    <string name="rated">__</string>
+    <string name="runtime">__min</string>
+    <string name="imdb_score">_._</string>
+    <string name="rottentomatoes_score">_._</string>
+    <string name="metacritic_score">_._</string>
 </resources>

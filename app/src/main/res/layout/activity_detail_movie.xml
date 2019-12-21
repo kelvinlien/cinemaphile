@@ -5,150 +5,160 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/ParentScrollView"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#00FCFAFA"
+        android:layerType="software"
+        app:shimmer_direction="left_to_right"
+        app:shimmer_repeat_mode="restart"
+        app:shimmer_shape="linear">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/ParentScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/Poster"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
-                android:contentDescription="@string/poster_description"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/MainInfo"
-                android:layout_width="match_parent"
-                android:layout_height="84dp">
-
-                <TableLayout
+                <ImageView
+                    android:id="@+id/Poster"
                     android:layout_width="match_parent"
-                    android:layout_height="84dp"
-                    android:stretchColumns="*">
+                    android:layout_height="340dp"
+                    android:contentDescription="@string/poster_description"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MainInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:stretchColumns="*">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/MovieName"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/movie_name"
+                                android:textAlignment="center"
+                                android:textSize="27sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/Year"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/year"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:id="@+id/Rated"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/rated"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:id="@+id/Runtime"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/runtime"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/MovieName"
-                            android:layout_width="match_parent"
-                            android:layout_height="42dp"
-                            android:layout_weight="1"
-                            android:text="@string/movie_name"
-                            android:textAlignment="center"
-                            android:textSize="27sp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:weightSum="3">
+                        android:weightSum="8">
 
-                        <TextView
-                            android:id="@+id/Year"
-                            android:layout_width="0dp"
-                            android:layout_height="42dp"
-                            android:layout_weight="1"
-                            android:text="@string/year"
-                            android:textAlignment="center"
-                            android:textSize="24sp" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/IMDb_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="3">
 
-                        <TextView
-                            android:id="@+id/Rated"
-                            android:layout_width="0dp"
-                            android:layout_height="42dp"
-                            android:layout_weight="1"
-                            android:text="@string/rated"
-                            android:textAlignment="center"
-                            android:textSize="24sp" />
+                            <TextView
+                                android:id="@+id/IMDb_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/imdb"
+                                android:gravity="center"
+                                android:text="@string/imdb_score"
+                                android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/Runtime"
-                            android:layout_width="0dp"
-                            android:layout_height="42dp"
-                            android:layout_weight="1"
-                            android:text="@string/runtime"
-                            android:textAlignment="center"
-                            android:textSize="24sp" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/RottenTomatoes_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="2">
+
+                            <TextView
+                                android:id="@+id/RottenTomatoes_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/rottentomatoes"
+                                android:gravity="center"
+                                android:text="@string/rottentomatoes_score"
+                                android:textSize="20sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/Metacritic_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="3">
+
+                            <TextView
+                                android:id="@+id/Metacritic_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:drawableStart="@drawable/metacritic"
+                                android:gravity="center"
+                                android:text="@string/metacritic_score"
+                                android:textSize="20sp" />
+                        </androidx.cardview.widget.CardView>
                     </TableRow>
+                </androidx.cardview.widget.CardView>
 
-                </TableLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="56dp">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="3">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/IMDb_card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/IMDb_score"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:drawableStart="@drawable/imdb"
-                            android:gravity="center"
-                            android:text="@string/imdb_score"
-                            android:textSize="20sp" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/RottenTomatoes_card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/RottenTomatoes_score"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:drawableStart="@drawable/rottentomatoes"
-                            android:gravity="center"
-                            android:text="@string/rottentomatoes_score"
-                            android:textSize="20sp" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/Metacritic_card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/Metacritic_score"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:drawableStart="@drawable/metacritic"
-                            android:gravity="center"
-                            android:text="@string/metacritic_score"
-                            android:textSize="20sp" />
-                    </androidx.cardview.widget.CardView>
-                </TableRow>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-    </ScrollView>
-
+            </LinearLayout>
+        </ScrollView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <Button
         android:id="@+id/test_button"
         android:layout_width="match_parent"

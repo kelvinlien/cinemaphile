@@ -26,6 +26,5 @@
             android:readPermission="com.example.myapplication.READ_DATABASE"
             android:writePermission="com.example.myapplication.WRITE_DATABASE" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
