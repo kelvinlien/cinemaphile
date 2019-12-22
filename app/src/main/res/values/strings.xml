@@ -26,4 +26,14 @@
     <string name="imdb_score">_._</string>
     <string name="rottentomatoes_score">_._</string>
     <string name="metacritic_score">_._</string>
+    <string name="genres">Genres</string>
+    <string name="plot_header">Plot</string>
+    <string name="plot_content">Plot of the current film</string>
+    <string name="genre">Genre(s)</string>
+    <string name="directorcast"><![CDATA[Director & Cast]]></string>
+    <string name="director">Director: </string>
+    <string name="cast">Cast: </string>
+    <string name="boxaward"><![CDATA[Box office & Awards]]></string>
+    <string name="box_office">Box Office: </string>
+    <string name="awards">Award(s): </string>
 </resources>

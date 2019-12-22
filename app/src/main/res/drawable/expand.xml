@@ -2,9 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:drawable="@drawable/imdblogo"
-        android:width="@dimen/logo_size"
-        android:height="@dimen/logo_size"
+        android:drawable="@drawable/expandindicator"
+        android:width="@dimen/icon_size"
+        android:height="@dimen/icon_size"
         />
 
 </layer-list >
