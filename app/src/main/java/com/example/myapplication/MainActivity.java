@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -43,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
         searchView.setQueryHint(getResources().getString(R.string.hint_search));
         searchView.setIconifiedByDefault(true);
-        searchView.setFocusable(true);
-        searchView.setIconified(true);
-        searchView.clearFocus();
-
+        //searchView.clearFocus();
+        SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
         return true;
     }
 }

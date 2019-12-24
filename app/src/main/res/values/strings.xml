@@ -1,11 +1,6 @@
 <resources>
     <string name="app_name">CinemaPhile</string>
-   <string-array name="my_films">
-       <item>Jcob</item>
-       <item>Starbuck</item>
-       <item>McDonald</item>
-       <item>KFC</item>
-   </string-array>
+   <string name="results_activity_label">result_search</string>
     <string name="search">Search</string>
     <string name="hint_search">Enter Keyword</string>
     <string name="imageview">ImageView</string>
