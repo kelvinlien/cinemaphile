@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import  com.example.myapplication.model.movie_item;
 import java.util.List;
+import com.squareup.picasso.Picasso;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
@@ -39,7 +40,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.tvDesc.setText(results.get(i).getOverView());
         holder.tvTitle.setText(results.get(i).getTitle());
 
-        holder.ivMovie.setImageDrawable(context.getResources().getDrawable(results.get(i).getPoster()));
+        Picasso.with(context)
+                .load(results.get(i).getPoster())
+                .resize(50, 50)
+                .into(holder.ivMovie);
 
     }
 
