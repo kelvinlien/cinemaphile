@@ -21,11 +21,12 @@ public class getImageFromURL extends AsyncTask<String, Integer, Bitmap> {
         }
         Bitmap bmp = null;
         try {
+            assert url != null;
             bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            return bmp;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return bmp;
     }
 }
+

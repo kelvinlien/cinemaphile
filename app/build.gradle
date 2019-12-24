@@ -50,8 +50,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //Async HTTP request to call API
     implementation 'com.loopj.android:android-async-http:1.4.9'
+    //Facebook Shimmer effect to show when fetching data
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    //Expansion Panel to show additional movie info
     implementation 'com.robertlevonyan.view:MaterialExpansionPanel:2.0.7'
+
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }

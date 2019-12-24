@@ -10,14 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.network.OMDB;
 import com.example.myapplication.network.getImageFromURL;
 
 import com.example.myapplication.R;
 
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
-
-import com.example.myapplication.network.HttpUtils;
 
 import org.json.*;
 
@@ -54,8 +53,6 @@ public class DetailMovieActivity extends Activity {
 
     TextView Plot;
 
-    HttpUtils client;
-
     Expandable PlotExpand;
 
     Expandable DCExpand;
@@ -77,7 +74,6 @@ public class DetailMovieActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
         ButterKnife.bind(this);
-        client = new HttpUtils();
         Poster = findViewById(R.id.Poster);
         MovieName = findViewById(R.id.MovieName);
         Year = findViewById(R.id.Year);
@@ -111,10 +107,8 @@ public class DetailMovieActivity extends Activity {
 
         b.setClickable(false);
         b.setVisibility(View.INVISIBLE);
-        RequestParams rp = new RequestParams();
-//        rp.add("username", "aaa"); rp.add("password", "aaa@123");
 
-        HttpUtils.getByUrl("http://www.omdbapi.com/?apikey=61222a7d&t=Joyeux+ +Noel", rp, new JsonHttpResponseHandler() {
+        OMDB.getInstance().getMovieDetail("Joyeux Noel", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray

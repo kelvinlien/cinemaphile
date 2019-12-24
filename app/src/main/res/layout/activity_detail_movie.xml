@@ -13,6 +13,7 @@
         android:layerType="software"
         app:shimmer_direction="left_to_right"
         app:shimmer_repeat_mode="restart"
+        app:shimmer_clip_to_children="true"
         app:shimmer_shape="linear">
 
         <ScrollView
@@ -22,7 +23,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <ImageView
@@ -162,9 +163,9 @@
                     android:id="@+id/Genre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/genre"
-                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/genre"
+                    android:drawablePadding="5dp"
+                    android:text="@string/genre"
                     android:textSize="22sp" />
 
                 <HorizontalScrollView
@@ -193,12 +194,12 @@
                 <com.robertlevonyan.views.expandable.Expandable
                     android:id="@+id/PlotExpandable"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="2dp"
-                    app:exp_icon="@drawable/plot"
-                    app:exp_iconStyle="roundedSquare"
-                    app:exp_expandIndicator="@drawable/expand"
                     app:exp_animateExpand="true"
-                    android:layout_height="wrap_content">
+                    app:exp_expandIndicator="@drawable/expand"
+                    app:exp_icon="@drawable/plot"
+                    app:exp_iconStyle="roundedSquare">
 
                     <TextView
                         android:id="@+id/PlotHeader"
@@ -227,11 +228,11 @@
                 <com.robertlevonyan.views.expandable.Expandable
                     android:id="@+id/DCExpandable"
                     android:layout_width="match_parent"
-                    app:exp_icon="@drawable/directorcast"
-                    app:exp_iconStyle="roundedSquare"
+                    android:layout_height="wrap_content"
                     app:exp_animateExpand="true"
                     app:exp_expandIndicator="@drawable/expand"
-                    android:layout_height="wrap_content">
+                    app:exp_icon="@drawable/directorcast"
+                    app:exp_iconStyle="roundedSquare">
 
                     <TextView
                         android:id="@+id/DCHeader"
@@ -311,11 +312,11 @@
                 <com.robertlevonyan.views.expandable.Expandable
                     android:id="@+id/BAExpandable"
                     android:layout_width="match_parent"
-                    app:exp_icon="@drawable/award"
-                    app:exp_iconStyle="roundedSquare"
+                    android:layout_height="wrap_content"
                     app:exp_animateExpand="true"
                     app:exp_expandIndicator="@drawable/expand"
-                    android:layout_height="wrap_content">
+                    app:exp_icon="@drawable/award"
+                    app:exp_iconStyle="roundedSquare">
 
                     <TextView
                         android:id="@+id/BAHeader"
