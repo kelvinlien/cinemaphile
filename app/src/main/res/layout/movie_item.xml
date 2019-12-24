@@ -24,7 +24,7 @@
          android:scaleType="fitCenter"
          android:layout_gravity="center_vertical"
          app:srcCompat="@drawable/loading"
-         android:contentDescription="@string/imageview"/>
+         android:contentDescription=""/>
     <LinearLayout
         android:layout_weight="7"
         android:orientation="vertical"

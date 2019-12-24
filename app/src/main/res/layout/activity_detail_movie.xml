@@ -1,42 +1,402 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/search"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp"
-            app:theme="@style/ToolbarStyle"
-            android:theme="@style/AlertDialog.AppCompat.Light"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
-    <ScrollView
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:fillViewport="true"
-        android:background="@android:color/white"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <LinearLayout
+        android:background="#00FCFAFA"
+        android:layerType="software"
+        app:shimmer_direction="left_to_right"
+        app:shimmer_repeat_mode="restart"
+        app:shimmer_clip_to_children="true"
+        app:shimmer_shape="linear">
+
+        <ScrollView
+            android:id="@+id/ParentScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/white"/>
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/Poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp"
+                    android:contentDescription="@string/poster_description"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/MainInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    app:cardElevation="3dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:stretchColumns="*">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/MovieName"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/movie_name"
+                                android:textAlignment="center"
+                                android:textSize="27sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/Year"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/year"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:id="@+id/Rated"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/rated"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:id="@+id/Runtime"
+                                android:layout_width="0dp"
+                                android:layout_height="42dp"
+                                android:layout_weight="1"
+                                android:text="@string/runtime"
+                                android:textAlignment="center"
+                                android:textSize="24sp" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    app:cardCornerRadius="3dp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="8">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/IMDb_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="3">
+
+                            <TextView
+                                android:id="@+id/IMDb_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/imdb"
+                                android:gravity="center"
+                                android:text="@string/imdb_score"
+                                android:textSize="20sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/RottenTomatoes_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="2">
+
+                            <TextView
+                                android:id="@+id/RottenTomatoes_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/rottentomatoes"
+                                android:gravity="center"
+                                android:text="@string/rottentomatoes_score"
+                                android:textSize="20sp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/Metacritic_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_weight="3">
+
+                            <TextView
+                                android:id="@+id/Metacritic_score"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:drawableStart="@drawable/metacritic"
+                                android:gravity="center"
+                                android:text="@string/metacritic_score"
+                                android:textSize="20sp" />
+                        </androidx.cardview.widget.CardView>
+                    </TableRow>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/Genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/genre"
+                    android:drawablePadding="5dp"
+                    android:text="@string/genre"
+                    android:textSize="22sp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/Genres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+
+                <com.robertlevonyan.views.expandable.Expandable
+                    android:id="@+id/PlotExpandable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    app:exp_animateExpand="true"
+                    app:exp_expandIndicator="@drawable/expand"
+                    app:exp_icon="@drawable/plot"
+                    app:exp_iconStyle="roundedSquare">
+
+                    <TextView
+                        android:id="@+id/PlotHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center|start"
+                        android:text="@string/plot_header"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/PlotContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/plot_content"
+                        android:textSize="18sp" />
+                </com.robertlevonyan.views.expandable.Expandable>
 
 
-    </ScrollView>
+                <View
+                    android:id="@+id/PlotDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <com.robertlevonyan.views.expandable.Expandable
+                    android:id="@+id/DCExpandable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:exp_animateExpand="true"
+                    app:exp_expandIndicator="@drawable/expand"
+                    app:exp_icon="@drawable/directorcast"
+                    app:exp_iconStyle="roundedSquare">
+
+                    <TextView
+                        android:id="@+id/DCHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:gravity="center|start"
+                        android:text="@string/directorcast"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/Director"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/DirectorTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/director"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/DirectorName"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <HorizontalScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/Cast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/CastTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/cast"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/CastNames"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="no one"
+                                    android:textSize="18sp" />
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
+                    </LinearLayout>
+                </com.robertlevonyan.views.expandable.Expandable>
+
+
+                <View
+                    android:id="@+id/DCDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <com.robertlevonyan.views.expandable.Expandable
+                    android:id="@+id/BAExpandable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:exp_animateExpand="true"
+                    app:exp_expandIndicator="@drawable/expand"
+                    app:exp_icon="@drawable/award"
+                    app:exp_iconStyle="roundedSquare">
+
+                    <TextView
+                        android:id="@+id/BAHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:gravity="center|start"
+                        android:text="@string/boxaward"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/BoxOffice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/BoxOfficeTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/box_office"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/BoxOfficeNumber"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Undefined"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <HorizontalScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/Awards"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/AwardsTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/awards"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/AwardNames"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nothing"
+                                    android:textSize="18sp" />
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
+                    </LinearLayout>
+                </com.robertlevonyan.views.expandable.Expandable>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom|center"
+        android:onClick="callRequest"
+        android:text="Fetch data" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

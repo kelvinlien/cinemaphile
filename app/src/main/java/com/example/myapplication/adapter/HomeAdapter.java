@@ -38,7 +38,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.tvDate.setText(results.get(i).getReleaseDate());
         holder.tvDesc.setText(results.get(i).getOverView());
         holder.tvTitle.setText(results.get(i).getTitle());
-
         holder.ivMovie.setImageDrawable(context.getResources().getDrawable(results.get(i).getPoster()));
 
     }

@@ -21,7 +21,7 @@ import java.util.List;
 
 public class FragmentNews extends Fragment {
 
-    private List<movie_item> MovieList;
+    private List<movie_item> movieList;
     private HomeAdapter adapter;
     private RecyclerView recyclerView;
     View view;
@@ -29,27 +29,27 @@ public class FragmentNews extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MovieList=new ArrayList<>();
+        movieList=new ArrayList<>();
 
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
-        MovieList.add(
+        movieList.add(
                 new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
         );
     }
@@ -60,7 +60,7 @@ public class FragmentNews extends Fragment {
         view=inflater.inflate(R.layout.news_fragment,container,false);
 
         recyclerView=  view.findViewById(R.id.rv_movie);
-        adapter=new HomeAdapter(MovieList,getContext());
+        adapter=new HomeAdapter(movieList,getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
