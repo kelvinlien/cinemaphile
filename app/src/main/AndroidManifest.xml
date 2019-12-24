@@ -12,19 +12,29 @@
         android:supportsRtl="true"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity android:name=".detailmovie.DetailMovieActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchActivity" />
         </activity>
-        <provider
-            android:name=".provider.MovieProvider"
-            android:authorities="com.example.myapplication"
-            android:exported="true"
-            android:readPermission="com.example.myapplication.READ_DATABASE"
-            android:writePermission="com.example.myapplication.WRITE_DATABASE" />
-    </application>
+        <activity
+            android:name=".SearchResultsActivity">
+            <!-- This intent-filter identifies this activity as "searchable" -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!-- This metadata entry provides further configuration details for searches -->
+            <!-- that are handled by this activity. -->
+
+
+        </activity>
+    </application>
 </manifest>
