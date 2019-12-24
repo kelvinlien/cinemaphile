@@ -32,26 +32,25 @@ public class FragmentNews extends Fragment {
         movieList=new ArrayList<>();
 
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
         movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
+                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
         );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger",R.drawable.avenger,"this is a movie from Marvel Studio")
-        );
+
+
     }
 
     @Nullable

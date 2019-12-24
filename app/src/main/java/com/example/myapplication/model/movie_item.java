@@ -3,11 +3,11 @@ package com.example.myapplication.model;
 public class movie_item {
         private String releaseDate;
         private String title;
-        private int poster;
+        private String poster;
         private String overView;
 
 
-        public movie_item(String releaseDate,String title,int poster,String overView) {
+        public movie_item(String releaseDate,String title,String poster,String overView) {
             this.releaseDate=releaseDate;
             this.title=title;
             this.poster=poster;
@@ -22,7 +22,7 @@ public class movie_item {
             this.title = title;
         }
 
-        public void setPoster(int Poster){this.poster=Poster;}
+        public void setPoster(String Poster){this.poster=Poster;}
 
         public  void  setoverView( String overView){this.overView=overView;}
 
@@ -39,6 +39,6 @@ public class movie_item {
 
         public String getOverView(){return overView;}
 
-        public int getPoster(){return this.poster;}
+        public String getPoster(){return this.poster;}
 }
 

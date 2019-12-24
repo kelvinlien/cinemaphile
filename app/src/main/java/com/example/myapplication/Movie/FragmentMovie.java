@@ -44,31 +44,22 @@ public class FragmentMovie extends Fragment {
        movieList=new ArrayList<>();
 
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
         movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner",R.drawable.maze_runner,"this is movie was released in 2018")
+                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
 
     }

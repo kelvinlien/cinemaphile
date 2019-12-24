@@ -37,7 +37,7 @@ public class MovieService {
                     String releaseDate = movieJSON.getString("release_date");
                     String overView=movieJSON.getString("overview");
                     // create Movie object
-                    movie_item newMovie = new movie_item(releaseDate, title, Integer.parseInt(posterLink),overView);
+                    movie_item newMovie = new movie_item(releaseDate, title, posterLink,overView);
                     movies.add(newMovie);
                 }
             }

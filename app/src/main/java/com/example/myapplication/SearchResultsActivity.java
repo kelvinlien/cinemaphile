@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -32,11 +33,11 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_search_results);
         ButterKnife.bind(this);
-
-        Intent oldIntent = getIntent();
-        final String title = oldIntent.getStringExtra("title");
-
-        getMovies(title);
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String title = intent.getStringExtra(SearchManager.QUERY);
+            getMovies(title);
+        }
     }
 
     private void getMovies(String title) {
