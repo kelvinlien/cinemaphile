@@ -40,9 +40,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.tvDesc.setText(results.get(i).getOverView());
         holder.tvTitle.setText(results.get(i).getTitle());
 
-        Picasso.with(context)
-                .load(results.get(i).getPoster())
+        Picasso.get()
+                .load("https://image.tmdb.org/t/p/w92" + results.get(i).getPoster())
                 .resize(50, 50)
+//                .centerCrop()
                 .into(holder.ivMovie);
 
     }

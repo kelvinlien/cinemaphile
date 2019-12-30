@@ -12,6 +12,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Movie.FragmentMovie;
+import com.example.myapplication.detailmovie.DetailMovieActivity;
 import com.example.myapplication.news.FragmentNews;
 import com.google.android.material.tabs.TabLayout;
 
@@ -45,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
         searchView.setQueryHint(getResources().getString(R.string.hint_search));
         searchView.setIconifiedByDefault(true);
-        //searchView.clearFocus();
+//        searchView.clearFocus();
         SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        assert searchManager != null;
         searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
         return true;
     }

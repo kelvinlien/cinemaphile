@@ -1,19 +1,26 @@
 package com.example.myapplication.network;
 
+import com.example.myapplication.model.movie_item;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+
 public class TMDB {
     private static final String ACESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTE0YjkzMjc4NDhhNTk5MWI0N2I4N2MyOTE5MzAzNyIsInN1YiI6IjVkZmE0MmE4MjZkYWMxMDAxMjU4Y2U4NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.G5lmTQ3WvKlX6Syb1P2ACNeXHpJsSE1mQ4x2ut1kfcA";
     private static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/";
-    private static final String MOVIE_DISCOVER_PREFIX = "discover/movie";
+    private static final String MOVIE_DISCOVER_PREFIX = "discover/movie/";
     private static final String MOVIE_DETAIL_PREFIX = "movie/";
     private static final String MOVIE_SEARCH_PREFIX = "search/movie";
     private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
     private static final String DEFAULT_SORT = "popularity.desc";
     private static final String SORT_PARA = "sort_by";
     private static final String PAGE_PARA = "page";
+    private static final String API_KEY = "1b8bcb3f9c653e93116366378d884876";
     private static final String[] POSTER_SIZES = {
             "w92",
             "w154",
@@ -71,7 +78,7 @@ public class TMDB {
     {
         RequestParams rp = new RequestParams();
         rp.add("query", keyword);
-        String url = MOVIE_BASE_URL + MOVIE_SEARCH_PREFIX + keyword;
+        String url = MOVIE_BASE_URL + MOVIE_SEARCH_PREFIX;
         client.get(url, rp, handler);
     }
 
@@ -79,6 +86,23 @@ public class TMDB {
     {
         String url = MOVIE_BASE_URL + MOVIE_DETAIL_PREFIX + id;
         client.get(url, new RequestParams(), handler);
+    }
+
+    public ArrayList<movie_item> processResults(JSONObject response) throws JSONException {
+        ArrayList<movie_item> movies = new ArrayList<>();
+        JSONArray moviesJSON = response.getJSONArray("results");
+
+        for (int i = 0; i < moviesJSON.length(); i++) {
+            JSONObject movieJSON = moviesJSON.getJSONObject(i);
+            String title = movieJSON.getString("title");
+            String posterLink = movieJSON.getString("poster_path");
+            String releaseDate = movieJSON.getString("release_date");
+            String overView=movieJSON.getString("overview");
+            // create Movie object
+            movie_item newMovie = new movie_item(releaseDate, title, posterLink,overView);
+            movies.add(newMovie);
+        }
+        return movies;
     }
 
 
