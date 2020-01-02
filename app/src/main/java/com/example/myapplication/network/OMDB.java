@@ -1,9 +1,11 @@
 package com.example.myapplication.network;
 
+import android.widget.ImageView;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
+import com.squareup.picasso.Picasso;
 
 
 public class OMDB {
@@ -29,6 +31,15 @@ public class OMDB {
             instance = new OMDB();
         }
         return instance;
+    }
+
+    public void getImage(String url, ImageView iv)       //return a jpeg image onSuccess
+    {
+        Picasso.get()
+                .load(url)
+//                .resize(50, 50)
+//                .centerCrop()
+                .into(iv);
     }
 
 

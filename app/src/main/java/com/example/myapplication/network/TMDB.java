@@ -1,9 +1,12 @@
 package com.example.myapplication.network;
 
+import android.widget.ImageView;
+
 import com.example.myapplication.model.movie_item;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,7 +62,7 @@ public class TMDB {
         client.get(url, rp, handler);
     }
 
-    public void getImage(String path, int size, AsyncHttpResponseHandler handler)       //return a jpeg image onSuccess
+    public void getImage(String path, int size, ImageView iv)       //return a jpeg image onSuccess
     {
         if (size >= POSTER_SIZES.length)
         {
@@ -71,7 +74,11 @@ public class TMDB {
         }
         String size_code = POSTER_SIZES[size];
         String url = IMAGE_BASE_URL + size_code + "/" + path;
-        client.get(url, new RequestParams(), handler);
+        Picasso.get()
+                .load(url)
+//                .resize(50, 50)
+//                .centerCrop()
+                .into(iv);
     }
 
     public void getSearchResults(String keyword, AsyncHttpResponseHandler handler)

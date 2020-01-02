@@ -11,40 +11,48 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.adapter.HomeAdapter;
 import com.example.myapplication.model.movie_item;
 import com.example.myapplication.network.TMDB;
-import com.example.myapplication.service.MovieService;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import cz.msebera.android.httpclient.Header;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class SearchResultsActivity extends AppCompatActivity {
     public static final String TAG = SearchResultsActivity.class.getSimpleName();
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private HomeAdapter mAdapter;
     public ArrayList<movie_item> mMovies = new ArrayList<>();
+    private List<movie_item> movieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_search_results);
         ButterKnife.bind(this);
+        movieList=new ArrayList<>();
+        mAdapter = new HomeAdapter(mMovies,getApplicationContext());
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+    }
+
+    protected void onStart() {
+
+        super.onStart();
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String title = intent.getStringExtra(SearchManager.QUERY);
             getMovies(title);
         }
+
     }
 
     private void getMovies(String title) {

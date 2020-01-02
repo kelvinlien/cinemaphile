@@ -1,10 +1,17 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -12,6 +19,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Movie.FragmentMovie;
+import com.example.myapplication.adapter.HomeAdapter;
 import com.example.myapplication.detailmovie.DetailMovieActivity;
 import com.example.myapplication.news.FragmentNews;
 import com.google.android.material.tabs.TabLayout;
@@ -52,4 +60,5 @@ public class MainActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
         return true;
     }
+
 }
