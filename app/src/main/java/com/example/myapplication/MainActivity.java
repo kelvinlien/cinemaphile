@@ -11,8 +11,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.myapplication.Movie.FragmentMovie;
-import com.example.myapplication.news.FragmentNews;
+import com.example.myapplication.TrendingFragment.FragmentTrendingMovie;
+import com.example.myapplication.TopRatedFragment.FragmentTopRatedMovie;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());//viewpager adapater
         //adding Fragment
 
-        viewPagerAdapter.AddFragment(new FragmentNews(),"news");
-        viewPagerAdapter.AddFragment(new FragmentMovie(),"movie");
+        viewPagerAdapter.AddFragment(new FragmentTopRatedMovie(),"news");
+        viewPagerAdapter.AddFragment(new FragmentTrendingMovie(),"movie");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);//set view pager for tablayout
@@ -45,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_search));
         searchView.setQueryHint(getResources().getString(R.string.hint_search));
         searchView.setIconifiedByDefault(true);
-        //searchView.clearFocus();
+//        searchView.clearFocus();
         SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        assert searchManager != null;
         searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
         return true;
     }
+
 }

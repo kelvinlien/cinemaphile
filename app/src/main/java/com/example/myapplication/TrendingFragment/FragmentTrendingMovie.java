@@ -1,4 +1,4 @@
-package com.example.myapplication.Movie;
+package com.example.myapplication.TrendingFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,17 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.HomeAdapter;
 import com.example.myapplication.model.movie_item;
+import com.example.myapplication.network.TMDB;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
 
-public class FragmentMovie extends Fragment {
+
+public class FragmentTrendingMovie extends Fragment {
 
     HomeAdapter adapter;
     public List<movie_item>  movieList;
     RecyclerView recyclerView;
-    public FragmentMovie() {
+
+    public FragmentTrendingMovie() {
     }
 
     @Nullable
@@ -41,26 +49,29 @@ public class FragmentMovie extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       movieList=new ArrayList<>();
 
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
+        movieList=new ArrayList<>();
+        TMDB.getInstance().getPopularMovie(1, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response)
+            {
+                System.out.println("popular movie call went wrong: " + response);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    movieList = TMDB.getInstance().processResults(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                adapter=new HomeAdapter(movieList,getContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
+
 }

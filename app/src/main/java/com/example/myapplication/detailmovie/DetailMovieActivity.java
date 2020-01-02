@@ -2,6 +2,7 @@ package com.example.myapplication.detailmovie;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,6 +89,9 @@ public class DetailMovieActivity extends Activity {
         Cast = findViewById(R.id.CastNames);
         BoxOffice = findViewById(R.id.BoxOfficeNumber);
         Awards = findViewById(R.id.AwardNames);
+        Intent i = getIntent();
+        String movie_name = i.getStringExtra("title");
+        callRequest(movie_name);
 
     }
 
@@ -96,25 +100,25 @@ public class DetailMovieActivity extends Activity {
     {
         super.onStart();
         ShimmerFrameLayout container =
-                (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+                findViewById(R.id.shimmer_view_container);
         container.startShimmer();
     }
 
 
-    public void callRequest(View view) {
+    public void callRequest(String name) {
         Button b = findViewById(R.id.test_button);
 
 
         b.setClickable(false);
         b.setVisibility(View.INVISIBLE);
 
-        OMDB.getInstance().getMovieDetail("Joyeux Noel", new JsonHttpResponseHandler() {
+        OMDB.getInstance().getMovieDetail(name, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
                 Log.d("asd", "---------------- this is response : " + response);
                 ShimmerFrameLayout container =
-                        (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+                        findViewById(R.id.shimmer_view_container);
                 try {
                     JSONObject serverResp = new JSONObject(response.toString());
                     String res = serverResp.getString("Response");
@@ -138,19 +142,13 @@ public class DetailMovieActivity extends Activity {
                         String cast = serverResp.getString("Actors");
                         String boxoffice = serverResp.getString("BoxOffice");
                         String awards = serverResp.getString("Awards");
-                        Bitmap bmp = null;
-                        try {
-                            bmp = new getImageFromURL().execute(poster).get();
-                        } catch (ExecutionException | InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        OMDB.getInstance().getImage(poster, Poster);
                         String[] temp = runtime.split(" ");
                         int hours = Integer.parseInt(temp[0]) / 60;
                         int minutes = Integer.parseInt(temp[0]) % 60;
-                        String duration = hours > 0 ? Integer.toString(hours) + "h" + Integer.toString(minutes) + "min" : Integer.toString(minutes) + "min";
-                        Poster.setImageBitmap(bmp);
-                        MovieName.setText((CharSequence) title);
-                        Year.setText((CharSequence)year);
+                        String duration = hours > 0 ? hours + "h" + minutes + "min" : minutes + "min";
+                        MovieName.setText(title);
+                        Year.setText(year);
                         Rated.setText(rated);
                         Runtime.setText(duration);
                         IMDb.setText(imdb_score);
@@ -177,7 +175,7 @@ public class DetailMovieActivity extends Activity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                TextView tv = (TextView)findViewById(R.id.Year);
+                TextView tv = findViewById(R.id.Year);
                 tv.setText((CharSequence) timeline);
 
             }

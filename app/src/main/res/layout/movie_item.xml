@@ -10,26 +10,27 @@
     android:layout_marginRight="15dp"
     app:cardCornerRadius="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="10">
-     <ImageView
-         android:id="@+id/iv_movie"
-         android:layout_weight="3"
-         android:layout_width="0dp"
-         android:layout_height="wrap_content"
-         android:adjustViewBounds="true"
-         android:padding="5dp"
-         android:scaleType="fitCenter"
-         android:layout_gravity="center_vertical"
-         app:srcCompat="@drawable/loading"
-         android:contentDescription=""/>
+
+    <ImageView
+        android:id="@+id/iv_movie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="3"
+        android:adjustViewBounds="true"
+        android:contentDescription="tmdb_poster"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/loading" />
     <LinearLayout
         android:layout_weight="7"
         android:orientation="vertical"
         android:layout_width="0dp"
-        android:layout_marginLeft="3dp"
+        android:layout_marginStart="3dp"
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/tv_title"
@@ -66,7 +67,7 @@
                android:layout_weight="2.5"
                android:layout_width="0dp"
                android:layout_height="wrap_content"
-               android:text="detail"
+               android:text="Detail"
                style="@style/ButtonGeneral"/>
             <Button
                 android:id="@+id/btn_share"

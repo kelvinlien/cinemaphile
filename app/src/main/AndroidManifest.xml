@@ -32,5 +32,7 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".detailmovie.DetailMovieActivity"></activity>
     </application>
 </manifest>
