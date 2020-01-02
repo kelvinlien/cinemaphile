@@ -7,6 +7,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +20,8 @@ public class TMDB {
     private static final String MOVIE_DISCOVER_PREFIX = "discover/movie/";
     private static final String MOVIE_DETAIL_PREFIX = "movie/";
     private static final String MOVIE_SEARCH_PREFIX = "search/movie";
+    private static final String MOVIE_TOP_RATED_PREFIX = "movie/top_rated";
+    private static final String LANGUAGE_PARA = "language";
     private static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
     private static final String DEFAULT_SORT = "popularity.desc";
     private static final String SORT_PARA = "sort_by";
@@ -51,6 +54,15 @@ public class TMDB {
             instance = new TMDB();
         }
         return instance;
+    }
+
+    public void getTopRatedMovies(int page_number, AsyncHttpResponseHandler handler)
+    {
+        RequestParams rp = new RequestParams();
+        rp.put(LANGUAGE_PARA, "en-US");
+        rp.put(PAGE_PARA, page_number);
+        String url = MOVIE_BASE_URL + MOVIE_TOP_RATED_PREFIX;
+        client.get(url, rp, handler);
     }
 
     public void getPopularMovie(int page_number, AsyncHttpResponseHandler handler)

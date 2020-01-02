@@ -1,27 +1,18 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.myapplication.Movie.FragmentMovie;
-import com.example.myapplication.adapter.HomeAdapter;
-import com.example.myapplication.detailmovie.DetailMovieActivity;
-import com.example.myapplication.news.FragmentNews;
+import com.example.myapplication.TrendingFragment.FragmentTrendingMovie;
+import com.example.myapplication.TopRatedFragment.FragmentTopRatedMovie;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -40,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());//viewpager adapater
         //adding Fragment
 
-        viewPagerAdapter.AddFragment(new FragmentNews(),"news");
-        viewPagerAdapter.AddFragment(new FragmentMovie(),"movie");
+        viewPagerAdapter.AddFragment(new FragmentTopRatedMovie(),"news");
+        viewPagerAdapter.AddFragment(new FragmentTrendingMovie(),"movie");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);//set view pager for tablayout

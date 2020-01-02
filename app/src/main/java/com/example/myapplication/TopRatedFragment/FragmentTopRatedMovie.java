@@ -1,4 +1,4 @@
-package com.example.myapplication.news;
+package com.example.myapplication.TopRatedFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.HomeAdapter;
 import com.example.myapplication.model.movie_item;
+import com.example.myapplication.network.TMDB;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
 
-public class FragmentNews extends Fragment {
+
+public class FragmentTopRatedMovie extends Fragment {
 
     private List<movie_item> movieList;
     private HomeAdapter adapter;
@@ -30,25 +37,26 @@ public class FragmentNews extends Fragment {
         super.onCreate(savedInstanceState);
 
         movieList=new ArrayList<>();
+        TMDB.getInstance().getTopRatedMovies(1, new JsonHttpResponseHandler() {
 
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
-        movieList.add(
-                new movie_item("1/1/2012","Avenger","R.drawable.avenger","this is a movie from Marvel Studio")
-        );
+            @Override
+            public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response)
+            {
+                System.out.println("popular movie call went wrong: " + response);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    movieList = TMDB.getInstance().processResults(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                adapter=new HomeAdapter(movieList,getContext());
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
 
     }

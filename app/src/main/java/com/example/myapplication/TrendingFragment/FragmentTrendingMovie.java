@@ -1,4 +1,4 @@
-package com.example.myapplication.Movie;
+package com.example.myapplication.TrendingFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.SearchResultsActivity;
 import com.example.myapplication.adapter.HomeAdapter;
 import com.example.myapplication.model.movie_item;
 import com.example.myapplication.network.TMDB;
@@ -26,13 +25,13 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 
-public class FragmentMovie extends Fragment {
+public class FragmentTrendingMovie extends Fragment {
 
     HomeAdapter adapter;
     public List<movie_item>  movieList;
     RecyclerView recyclerView;
 
-    public FragmentMovie() {
+    public FragmentTrendingMovie() {
     }
 
     @Nullable
@@ -41,7 +40,6 @@ public class FragmentMovie extends Fragment {
         View view = inflater.inflate(R.layout.movie_fragment, container, false);
         recyclerView=view.findViewById(R.id.rv_movie2);
         adapter=new HomeAdapter(movieList,getContext());
-        System.out.println("movieList to show is: " + movieList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -53,24 +51,6 @@ public class FragmentMovie extends Fragment {
         super.onCreate(savedInstanceState);
 
         movieList=new ArrayList<>();
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
-//        movieList.add(
-//                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-//        );
         TMDB.getInstance().getPopularMovie(1, new JsonHttpResponseHandler() {
 
             @Override
@@ -89,14 +69,9 @@ public class FragmentMovie extends Fragment {
                 adapter=new HomeAdapter(movieList,getContext());
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-                System.out.println("current movieList is: " + movieList);
             }
         });
 
     }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
 
 }
