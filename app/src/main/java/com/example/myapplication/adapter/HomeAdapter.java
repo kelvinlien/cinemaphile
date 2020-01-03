@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.MainActivity;
+
 import com.example.myapplication.R;
 import com.example.myapplication.detailmovie.DetailMovieActivity;
 import  com.example.myapplication.model.movie_item;
@@ -36,7 +37,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.movie_item, viewGroup, false);
-        Button detailButton = (Button)view.findViewById(R.id.btn_detail);
+        ImageButton detailButton = view.findViewById(R.id.btn_detail);
         detailButton.setOnClickListener(v -> {
             try {
             LinearLayout layout = (LinearLayout) v.getParent().getParent();
@@ -80,9 +81,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         TextView tvDate;
 
-        Button btnDetail;
+        ImageButton btnDetail;
 
-        Button btnShare;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,7 +91,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             tvDesc=itemView.findViewById(R.id.tv_desc);
             tvDate=itemView.findViewById(R.id.tv_date);
             btnDetail=itemView.findViewById(R.id.btn_detail);
-            btnShare=itemView.findViewById(R.id.btn_share);
         }
 
 
@@ -111,12 +110,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             return tvDate;
         }
 
-        public Button getBtnDetail() {
+        public ImageButton getBtnDetail() {
             return btnDetail;
         }
 
-        public Button getBtnShare() {
-            return btnShare;
-        }
     }
 }

@@ -46,36 +46,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:singleLine="true"
+            android:maxLines="3"
+            android:lines="3"
             android:textColor="@color/DescripColor"
             tools:text="Captain america is soldier that have more than"/>
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:singleLine="true"
-            android:textColor="@color/TextColor"
-            tools:text="Wednesday,12 December,2019"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="5">
-           <Button
-               android:id="@+id/btn_detail"
-               android:layout_weight="2.5"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:text="Detail"
-               style="@style/ButtonGeneral"/>
-            <Button
-                android:id="@+id/btn_share"
-                android:layout_weight="2.5"
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_weight="3.5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="share"
-                style="@style/ButtonGeneral"/>
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                tools:text="Wednesday,12 December,2019"/>
+           <ImageButton
+               android:id="@+id/btn_detail"
+               android:src="@drawable/play"
+               android:layout_weight="1.5"
+               android:scaleType="fitCenter"
+               android:layout_width="10dp"
+               android:layout_marginLeft="55dp"
+               android:layout_height="wrap_content"/>
+
 
         </LinearLayout>
 

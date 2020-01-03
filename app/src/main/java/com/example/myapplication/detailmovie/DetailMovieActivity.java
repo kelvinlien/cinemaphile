@@ -3,7 +3,6 @@ package com.example.myapplication.detailmovie;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.network.OMDB;
-import com.example.myapplication.network.getImageFromURL;
 
 import com.example.myapplication.R;
 

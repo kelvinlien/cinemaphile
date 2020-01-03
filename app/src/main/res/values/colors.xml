@@ -6,7 +6,7 @@
     <color name="tabIndicatorColor">#FFEB3B</color>
     ------------------------------------------------
     <color name="TextColor">#0F0F0F</color>
-    <color name="DescripColor">#A4999696</color>
+    <color name="DescripColor">#A44B4646</color>
     <color name="colorButton">#DFBC30</color>
     <color name="textButtonColor">#1D1D1C</color>
 </resources>
