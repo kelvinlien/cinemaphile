@@ -8,4 +8,6 @@
     <string name="error_message_failed_to_fetch">Error Message Failed To Fetch</string>
     <string name="action_settings">Share</string>
     <string name="empty_response">Empty Search</string>
+
+
 </resources>

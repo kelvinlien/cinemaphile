@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +40,11 @@ public class FragmentMovie extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        movieList=new ArrayList<>();
@@ -49,18 +55,5 @@ public class FragmentMovie extends Fragment {
         movieList.add(
                 new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
         );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-        movieList.add(
-                new movie_item("1/1/2018","Maze Runner","R.drawable.maze_runner","this is movie was released in 2018")
-        );
-
     }
 }
