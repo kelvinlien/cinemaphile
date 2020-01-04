@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ import cz.msebera.android.httpclient.Header;
 public class FragmentTrendingMovie extends Fragment {
 
     HomeAdapter adapter;
-    public List<movie_item>  movieList;
+    public ArrayList<movie_item>  movieList;
     RecyclerView recyclerView;
 
     public FragmentTrendingMovie() {
@@ -44,6 +45,11 @@ public class FragmentTrendingMovie extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
     }
 
     @Override
@@ -71,7 +77,6 @@ public class FragmentTrendingMovie extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-
     }
 
 }
