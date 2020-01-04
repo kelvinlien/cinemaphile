@@ -29,7 +29,7 @@ android {
 //        targetCompatibility = 1.8
 //    }
     buildTypes.each {
-        it.buildConfigField 'String','MOVIE_API_KEY', "\"1b8bcb3f9c653e93116366378d884876\""
+        it.buildConfigField 'String', 'MOVIE_API_KEY', "\"1b8bcb3f9c653e93116366378d884876\""
     }
 }
 

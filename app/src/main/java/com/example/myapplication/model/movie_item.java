@@ -7,7 +7,10 @@ public class movie_item {
     private String overView;
     private Integer id;
 
-    public  movie_item(){};
+    public movie_item() {
+    }
+
+    ;
 
     public movie_item(String releaseDate, String title, String poster, String overView) {
         this.releaseDate = releaseDate;

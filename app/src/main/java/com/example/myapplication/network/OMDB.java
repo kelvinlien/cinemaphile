@@ -13,21 +13,18 @@ public class OMDB {
     private static final String API_KEY = "61222a7d";
     private static final String MOVIE_NAME_PARA = "t";
     private static final String API_KEY_PARA = "apikey";
+    private static OMDB instance;
     private AsyncHttpClient client;
     private RequestParams rp;
-    private static OMDB instance;
 
-    public OMDB()
-    {
+    public OMDB() {
         client = new AsyncHttpClient();
         rp = new RequestParams();
         rp.put(API_KEY_PARA, API_KEY);
     }
 
-    public static synchronized OMDB getInstance()
-    {
-        if (instance == null)
-        {
+    public static synchronized OMDB getInstance() {
+        if (instance == null) {
             instance = new OMDB();
         }
         return instance;
@@ -43,12 +40,10 @@ public class OMDB {
     }
 
 
-    public void getMovieDetail(String movie_name, AsyncHttpResponseHandler handler)
-    {
-        rp.put(MOVIE_NAME_PARA,movie_name);
+    public void getMovieDetail(String movie_name, AsyncHttpResponseHandler handler) {
+        rp.put(MOVIE_NAME_PARA, movie_name);
         client.get(BASE_URL, rp, handler);
     }
-
 
 
 }

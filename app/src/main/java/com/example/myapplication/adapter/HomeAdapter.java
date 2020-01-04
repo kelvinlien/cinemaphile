@@ -14,26 +14,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.myapplication.R;
 import com.example.myapplication.detailmovie.DetailMovieActivity;
-import  com.example.myapplication.model.movie_item;
+import com.example.myapplication.model.movie_item;
+import com.example.myapplication.network.TMDB;
 
 import java.util.ArrayList;
 
-import com.example.myapplication.network.TMDB;
-
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private ArrayList<movie_item> movieResults;
-    private Context context;
-    private TMDB tmdb = TMDB.getInstance();
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
     private static final int POSTER_SIZE = 1;
-
+    private ArrayList<movie_item> movieResults;
+    private Context context;
+    private TMDB tmdb = TMDB.getInstance();
     private boolean isLoadingAdded = false;
 
     private movie_item result;
@@ -87,18 +82,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
         View v1 = inflater.inflate(R.layout.movie_item, parent, false);
-        Button detailButton = (Button)v1.findViewById(R.id.btn_detail);
+        Button detailButton = (Button) v1.findViewById(R.id.btn_detail);
         detailButton.setOnClickListener(v -> {
             try {
-            LinearLayout layout = (LinearLayout) v.getParent().getParent();
-            TextView Title = layout.findViewById(R.id.tv_title);
-            String title = (String) Title.getText();
-            Intent i = new Intent(context, DetailMovieActivity.class);
-            i.putExtra("title",title);
-            context.startActivity(i);
-            }
-            catch (Exception e)
-            {
+                LinearLayout layout = (LinearLayout) v.getParent().getParent();
+                TextView Title = layout.findViewById(R.id.tv_title);
+                String title = (String) Title.getText();
+                Intent i = new Intent(context, DetailMovieActivity.class);
+                i.putExtra("title", title);
+                context.startActivity(i);
+            } catch (Exception e) {
                 System.out.println("something went wrong: " + e);
             }
         });
@@ -128,15 +121,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
     }
-        @Override
-        public int getItemCount () {
-            return movieResults == null ? 0 : movieResults.size();
-        }
 
-        @Override
-        public int getItemViewType ( int position){
-            return (position == movieResults.size() - 1 && isLoadingAdded) ? LOADING : ITEM;
-        }
+    @Override
+    public int getItemCount() {
+        return movieResults == null ? 0 : movieResults.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return (position == movieResults.size() - 1 && isLoadingAdded) ? LOADING : ITEM;
+    }
 
 
     /*
@@ -144,113 +138,115 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
    _________________________________________________________________________________________________
     */
 
-        public void add (movie_item r){
-            movieResults.add(r);
-            notifyItemInserted(movieResults.size() - 1);
-        }
+    public void add(movie_item r) {
+        movieResults.add(r);
+        notifyItemInserted(movieResults.size() - 1);
+    }
 
-        public void addAll (ArrayList < movie_item > moveResults) {
-            for (movie_item result : moveResults) {
-                add(result);
-            }
-        }
-
-        public void remove (movie_item r){
-            int position = movieResults.indexOf(r);
-            if (position > -1) {
-                movieResults.remove(position);
-                notifyItemRemoved(position);
-            }
-        }
-
-        public void clear () {
-            isLoadingAdded = false;
-            while (getItemCount() > 0) {
-                remove(getItem(0));
-            }
-        }
-
-        public boolean isEmpty () {
-            return getItemCount() == 0;
-        }
-
-
-        public void addLoadingFooter () {
-            isLoadingAdded = true;
-            add(new movie_item());
-        }
-
-        public void removeLoadingFooter () {
-            isLoadingAdded = false;
-
-            int position = movieResults.size() - 1;
-            movie_item result = getItem(position);
-
-            if (result != null) {
-                movieResults.remove(position);
-                notifyItemRemoved(position);
-            }
-        }
-
-        public movie_item getItem ( int position){
-            return movieResults.get(position);
-        }
-        class MovieVH extends RecyclerView.ViewHolder {
-
-            TextView movieId;
-
-            ImageView ivMovie;
-
-            TextView tvTitle;
-
-            TextView tvDesc;
-
-            TextView tvDate;
-
-            Button btnDetail;
-
-            Button btnShare;
-
-            public MovieVH(@NonNull View itemView) {
-                super(itemView);
-                movieId=itemView.findViewById(R.id.movie_id);
-                ivMovie = itemView.findViewById(R.id.iv_movie);
-                tvTitle = itemView.findViewById(R.id.tv_title);
-                tvDesc = itemView.findViewById(R.id.tv_desc);
-                tvDate = itemView.findViewById(R.id.tv_date);
-                btnDetail = itemView.findViewById(R.id.btn_detail);
-                btnShare = itemView.findViewById(R.id.btn_share);
-            }
-
-
-            ImageView getIvMovie() {
-                return ivMovie;
-            }
-
-            TextView getTvTitle() {
-                return tvTitle;
-            }
-
-            TextView getTvDesc() {
-                return tvDesc;
-            }
-
-            TextView getTvDate() {
-                return tvDate;
-            }
-
-            public Button getBtnDetail() {
-                return btnDetail;
-            }
-
-            public Button getBtnShare() {
-                return btnShare;
-            }
-        }
-        class LoadingVH extends RecyclerView.ViewHolder {
-
-            public LoadingVH(View itemView) {
-                super(itemView);
-            }
+    public void addAll(ArrayList<movie_item> moveResults) {
+        for (movie_item result : moveResults) {
+            add(result);
         }
     }
+
+    public void remove(movie_item r) {
+        int position = movieResults.indexOf(r);
+        if (position > -1) {
+            movieResults.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
+    public void clear() {
+        isLoadingAdded = false;
+        while (getItemCount() > 0) {
+            remove(getItem(0));
+        }
+    }
+
+    public boolean isEmpty() {
+        return getItemCount() == 0;
+    }
+
+
+    public void addLoadingFooter() {
+        isLoadingAdded = true;
+        add(new movie_item());
+    }
+
+    public void removeLoadingFooter() {
+        isLoadingAdded = false;
+
+        int position = movieResults.size() - 1;
+        movie_item result = getItem(position);
+
+        if (result != null) {
+            movieResults.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
+
+    public movie_item getItem(int position) {
+        return movieResults.get(position);
+    }
+
+    class MovieVH extends RecyclerView.ViewHolder {
+
+        TextView movieId;
+
+        ImageView ivMovie;
+
+        TextView tvTitle;
+
+        TextView tvDesc;
+
+        TextView tvDate;
+
+        Button btnDetail;
+
+        Button btnShare;
+
+        public MovieVH(@NonNull View itemView) {
+            super(itemView);
+            movieId = itemView.findViewById(R.id.movie_id);
+            ivMovie = itemView.findViewById(R.id.iv_movie);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvDesc = itemView.findViewById(R.id.tv_desc);
+            tvDate = itemView.findViewById(R.id.tv_date);
+            btnDetail = itemView.findViewById(R.id.btn_detail);
+            btnShare = itemView.findViewById(R.id.btn_share);
+        }
+
+
+        ImageView getIvMovie() {
+            return ivMovie;
+        }
+
+        TextView getTvTitle() {
+            return tvTitle;
+        }
+
+        TextView getTvDesc() {
+            return tvDesc;
+        }
+
+        TextView getTvDate() {
+            return tvDate;
+        }
+
+        public Button getBtnDetail() {
+            return btnDetail;
+        }
+
+        public Button getBtnShare() {
+            return btnShare;
+        }
+    }
+
+    class LoadingVH extends RecyclerView.ViewHolder {
+
+        public LoadingVH(View itemView) {
+            super(itemView);
+        }
+    }
+}

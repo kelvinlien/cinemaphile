@@ -3,7 +3,6 @@ package com.example.myapplication.detailmovie;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,25 +10,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.network.OMDB;
-import com.example.myapplication.network.getImageFromURL;
-
 import com.example.myapplication.R;
-
-import butterknife.ButterKnife;
-import cz.msebera.android.httpclient.Header;
-
-import org.json.*;
-
+import com.example.myapplication.network.OMDB;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.loopj.android.http.*;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.robertlevonyan.views.expandable.Expandable;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.ExecutionException;
+
+import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 public class DetailMovieActivity extends Activity {
 
@@ -96,8 +93,7 @@ public class DetailMovieActivity extends Activity {
     }
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
         ShimmerFrameLayout container =
                 findViewById(R.id.shimmer_view_container);
@@ -122,8 +118,7 @@ public class DetailMovieActivity extends Activity {
                 try {
                     JSONObject serverResp = new JSONObject(response.toString());
                     String res = serverResp.getString("Response");
-                    if (res.equals("True"))
-                    {
+                    if (res.equals("True")) {
                         String title = serverResp.getString("Title");
                         String year = serverResp.getString("Year");
                         String poster = serverResp.getString("Poster");
@@ -160,9 +155,7 @@ public class DetailMovieActivity extends Activity {
                         Cast.setText(cast);
                         BoxOffice.setText(boxoffice);
                         Awards.setText(awards);
-                    }
-                    else
-                    {
+                    } else {
                         checkResponse(res);
                     }
                     container.stopShimmer();

@@ -21,14 +21,14 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import cz.msebera.android.httpclient.Header;
 
 public class SearchResultsActivity extends AppCompatActivity {
     public static final String TAG = SearchResultsActivity.class.getSimpleName();
-    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
-    private HomeAdapter mAdapter;
     public ArrayList<movie_item> mMovies = new ArrayList<>();
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+    private HomeAdapter mAdapter;
     private List<movie_item> movieList;
 
     @Override
@@ -36,8 +36,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_title_search_results);
         ButterKnife.bind(this);
-        movieList=new ArrayList<>();
-        mAdapter = new HomeAdapter(mMovies,getApplicationContext());
+        movieList = new ArrayList<>();
+        mAdapter = new HomeAdapter(mMovies, getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -59,8 +59,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         TMDB.getInstance().getSearchResults(title, new JsonHttpResponseHandler() {
 
             @Override
-            public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response)
-            {
+            public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response) {
                 System.out.println(response);
             }
 //            public void onFailure(int statusCode, Header[] headers, JSONObject response, IOException e) {
@@ -76,7 +75,7 @@ public class SearchResultsActivity extends AppCompatActivity {
                 }
 
                 SearchResultsActivity.this.runOnUiThread(() -> {
-                    mAdapter = new HomeAdapter(mMovies,getApplicationContext());
+                    mAdapter = new HomeAdapter(mMovies, getApplicationContext());
                     mRecyclerView.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
                     mRecyclerView.setLayoutManager(layoutManager);
