@@ -105,8 +105,9 @@ public class TMDB {
             String posterLink = movieJSON.getString("poster_path");
             String releaseDate = movieJSON.getString("release_date");
             String overView = movieJSON.getString("overview");
+            String id = movieJSON.getString("id");
             // create Movie object
-            movie_item newMovie = new movie_item(releaseDate, title, posterLink, overView);
+            movie_item newMovie = new movie_item(releaseDate, title, posterLink, overView, id);
             movies.add(newMovie);
         }
         return movies;

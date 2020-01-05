@@ -44,7 +44,7 @@ public class FragmentTopRatedMovie extends Fragment {
     private int currentPage = PAGE_START;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {       //init movieList, adapter and loadFirstPage
         super.onCreate(savedInstanceState);
 
         movieList = new ArrayList<>();

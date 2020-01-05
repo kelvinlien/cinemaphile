@@ -5,29 +5,30 @@ public class movie_item {
     private String title;
     private String poster;
     private String overView;
-    private Integer id;
+    private String id;
 
     public movie_item() {
     }
 
     ;
 
-    public movie_item(String releaseDate, String title, String poster, String overView) {
+    public movie_item(String releaseDate, String title, String poster, String overView, String id) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.poster = poster;
         this.overView = overView;
+        this.id = id;
     }
 
     public void setoverView(String overView) {
         this.overView = overView;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

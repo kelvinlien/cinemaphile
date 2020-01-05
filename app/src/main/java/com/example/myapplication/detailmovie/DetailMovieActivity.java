@@ -88,6 +88,7 @@ public class DetailMovieActivity extends Activity {
         Awards = findViewById(R.id.AwardNames);
         Intent i = getIntent();
         String movie_name = i.getStringExtra("title");
+        String tmdb_id = i.getStringExtra("id");
         callRequest(movie_name);
 
     }
@@ -102,11 +103,6 @@ public class DetailMovieActivity extends Activity {
 
 
     public void callRequest(String name) {
-        Button b = findViewById(R.id.test_button);
-
-
-        b.setClickable(false);
-        b.setVisibility(View.INVISIBLE);
 
         OMDB.getInstance().getMovieDetail(name, new JsonHttpResponseHandler() {
             @Override

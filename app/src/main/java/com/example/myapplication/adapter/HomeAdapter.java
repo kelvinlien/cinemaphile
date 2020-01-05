@@ -19,6 +19,7 @@ import com.example.myapplication.detailmovie.DetailMovieActivity;
 import com.example.myapplication.model.movie_item;
 import com.example.myapplication.network.TMDB;
 
+
 import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -37,31 +38,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.movieResults = results;
         this.context = context;
     }
-
-//    public HomeAdapter(Context context) {
-//        this.movieResults = new ArrayList<>();
-//        this.context = context;
-//    }
-
     @Override
-//    public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {         //set onClick event for detail button
-//        View view = LayoutInflater.from(context).inflate(R.layout.movie_item, viewGroup, false);
-//        Button detailButton = (Button)view.findViewById(R.id.btn_detail);
-//        detailButton.setOnClickListener(v -> {
-//            try {
-//            LinearLayout layout = (LinearLayout) v.getParent().getParent();
-//            TextView Title = layout.findViewById(R.id.tv_title);
-//            String title = (String) Title.getText();
-//            Intent i = new Intent(context, DetailMovieActivity.class);
-//            i.putExtra("title",title);
-//            context.startActivity(i);
-//            }
-//            catch (Exception e)
-//            {
-//                System.out.println("something went wrong: " + e);
-//            }
-//        });
-//        return new ViewHolder(view);
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -86,10 +63,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         detailButton.setOnClickListener(v -> {
             try {
                 LinearLayout layout = (LinearLayout) v.getParent().getParent();
+                LinearLayout parentLinear = (LinearLayout) v.getParent().getParent().getParent();
+                TextView ID = parentLinear.findViewById(R.id.movie_id);
+                String id = (String) ID.getText();
                 TextView Title = layout.findViewById(R.id.tv_title);
                 String title = (String) Title.getText();
                 Intent i = new Intent(context, DetailMovieActivity.class);
                 i.putExtra("title", title);
+                i.putExtra("id", id);
                 context.startActivity(i);
             } catch (Exception e) {
                 System.out.println("something went wrong: " + e);
@@ -107,7 +88,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case ITEM:
                 final MovieVH movieVH = (MovieVH) holder;
 
-                movieVH.movieId.setText("" + result.getId());
+                movieVH.movieId.setText(result.getId());
                 movieVH.tvTitle.setText(result.getTitle());
                 movieVH.tvDate.setText(result.getReleaseDate());
                 movieVH.tvDesc.setText(result.getOverView());
@@ -222,6 +203,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return ivMovie;
         }
 
+        TextView getMovieId(){
+            return movieId;
+        }
+
         TextView getTvTitle() {
             return tvTitle;
         }
@@ -245,7 +230,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     class LoadingVH extends RecyclerView.ViewHolder {
 
-        public LoadingVH(View itemView) {
+        LoadingVH(View itemView) {
             super(itemView);
         }
     }
