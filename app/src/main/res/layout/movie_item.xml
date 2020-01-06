@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="150dp"
     android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_height="150dp"
     android:layout_marginLeft="15dp"
+    android:layout_marginTop="10dp"
     android:layout_marginRight="15dp"
-    app:cardCornerRadius="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="10">
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp">
 
-    <ImageView
-        android:id="@+id/iv_movie"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="3"
-        android:adjustViewBounds="true"
-        android:contentDescription="tmdb_poster"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/loading" />
     <LinearLayout
-        android:layout_weight="7"
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_marginStart="3dp"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_movie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3"
+            android:adjustViewBounds="true"
+            android:contentDescription="tmdb_poster"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/loading" />
+
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/movie_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="18sp"
-            android:singleLine="true"
-            android:textColor="@color/TextColor"
-            tools:text="Captain America : Winter Soldier"/>
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:singleLine="true"
-            android:textColor="@color/DescripColor"
-            tools:text="Captain america is soldier that have more than"/>
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:singleLine="true"
-            android:textColor="@color/TextColor"
-            tools:text="Wednesday,12 December,2019"/>
+            android:text="TextView"
+            android:visibility="gone" />
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="5">
-           <Button
-               android:id="@+id/btn_detail"
-               android:layout_weight="2.5"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:text="Detail"
-               style="@style/ButtonGeneral"/>
-            <Button
-                android:id="@+id/btn_share"
-                android:layout_weight="2.5"
-                android:layout_width="0dp"
+            android:layout_marginStart="3dp"
+            android:layout_weight="7"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="share"
-                style="@style/ButtonGeneral"/>
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                tools:text="Captain America : Winter Soldier"/>
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="3"
+                android:lines="3"
+                android:textColor="@color/DescripColor"
+                tools:text="Captain america is soldier that have more than"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="10">
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:textColor="@color/TextColor"
+                    tools:text="Wednesday,12 December,2019"/>
+                <ImageButton
+                    android:id="@+id/btn_detail"
+                    android:src="@drawable/play"
+                    android:layout_weight="3"
+                    android:scaleType="fitCenter"
+                    android:layout_width="10dp"
+                    android:layout_marginLeft="55dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
 </androidx.cardview.widget.CardView>

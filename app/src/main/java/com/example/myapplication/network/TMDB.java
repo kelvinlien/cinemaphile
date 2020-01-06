@@ -7,11 +7,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class TMDB {
@@ -35,29 +35,23 @@ public class TMDB {
             "w500",
             "w780",
             "original"};
-
+    private static TMDB instance;
     private AsyncHttpClient client;
 
-    private static TMDB instance;
 
-
-    private TMDB()
-    {
+    private TMDB() {
         client = new AsyncHttpClient();
         client.addHeader("Authorization", "Bearer " + ACESS_TOKEN);
     }
 
-    public static synchronized TMDB getInstance()
-    {
-        if (instance == null)
-        {
+    public static synchronized TMDB getInstance() {
+        if (instance == null) {
             instance = new TMDB();
         }
         return instance;
     }
 
-    public void getTopRatedMovies(int page_number, AsyncHttpResponseHandler handler)
-    {
+    public void getTopRatedMovies(int page_number, AsyncHttpResponseHandler handler) {
         RequestParams rp = new RequestParams();
         rp.put(LANGUAGE_PARA, "en-US");
         rp.put(PAGE_PARA, page_number);
@@ -65,8 +59,7 @@ public class TMDB {
         client.get(url, rp, handler);
     }
 
-    public void getPopularMovie(int page_number, AsyncHttpResponseHandler handler)
-    {
+    public void getPopularMovies(int page_number, AsyncHttpResponseHandler handler) {
         RequestParams rp = new RequestParams();
         rp.put(SORT_PARA, DEFAULT_SORT);
         rp.put(PAGE_PARA, page_number);
@@ -76,12 +69,9 @@ public class TMDB {
 
     public void getImage(String path, int size, ImageView iv)       //return a jpeg image onSuccess
     {
-        if (size >= POSTER_SIZES.length)
-        {
-            size = POSTER_SIZES.length-1;
-        }
-        else if (size < 0)
-        {
+        if (size >= POSTER_SIZES.length) {
+            size = POSTER_SIZES.length - 1;
+        } else if (size < 0) {
             size = 0;
         }
         String size_code = POSTER_SIZES[size];
@@ -93,16 +83,14 @@ public class TMDB {
                 .into(iv);
     }
 
-    public void getSearchResults(String keyword, AsyncHttpResponseHandler handler)
-    {
+    public void getSearchResults(String keyword, AsyncHttpResponseHandler handler) {
         RequestParams rp = new RequestParams();
         rp.add("query", keyword);
         String url = MOVIE_BASE_URL + MOVIE_SEARCH_PREFIX;
         client.get(url, rp, handler);
     }
 
-    public void getMovieDetail(int id, AsyncHttpResponseHandler handler)
-    {
+    public void getMovieDetail(String id, AsyncHttpResponseHandler handler) {
         String url = MOVIE_BASE_URL + MOVIE_DETAIL_PREFIX + id;
         client.get(url, new RequestParams(), handler);
     }
@@ -116,9 +104,10 @@ public class TMDB {
             String title = movieJSON.getString("title");
             String posterLink = movieJSON.getString("poster_path");
             String releaseDate = movieJSON.getString("release_date");
-            String overView=movieJSON.getString("overview");
+            String overView = movieJSON.getString("overview");
+            String id = movieJSON.getString("id");
             // create Movie object
-            movie_item newMovie = new movie_item(releaseDate, title, posterLink,overView);
+            movie_item newMovie = new movie_item(releaseDate, title, posterLink, overView, id);
             movies.add(newMovie);
         }
         return movies;
