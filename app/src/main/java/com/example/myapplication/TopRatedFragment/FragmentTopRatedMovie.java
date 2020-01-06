@@ -100,11 +100,13 @@ public class FragmentTopRatedMovie extends Fragment {
         TMDB.getInstance().getTopRatedMovies(currentPage, new JsonHttpResponseHandler() {
             @Override
             public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response) {
+                super.onSuccess(a, hd, response);
                 System.out.println("popular movie call went wrong: " + response);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
                 adapter.removeLoadingFooter();
                 isLoading = false;
 
@@ -127,12 +129,14 @@ public class FragmentTopRatedMovie extends Fragment {
         TMDB.getInstance().getTopRatedMovies(1, new JsonHttpResponseHandler() {
             @Override
             public void onFailure(int a, Header[] hd, Throwable tw, JSONObject response) {
+                super.onSuccess(a, hd, response);
                 System.out.println("popular movie call went wrong: " + response);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
+                super.onSuccess(statusCode, headers, response);
                 ArrayList<movie_item> results = null;
 
                 try {

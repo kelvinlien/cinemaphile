@@ -68,9 +68,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 String id = (String) ID.getText();
                 TextView Title = layout.findViewById(R.id.tv_title);
                 String title = (String) Title.getText();
+                TextView Desc = layout.findViewById(R.id.tv_desc);
+                String overview = (String) Desc.getText();
+                TextView Date = layout.findViewById(R.id.tv_date);
+                String date = (String) Date.getText();
                 Intent i = new Intent(context, DetailMovieActivity.class);
                 i.putExtra("title", title);
                 i.putExtra("id", id);
+                i.putExtra("overview", overview);
+                i.putExtra("date", date);
                 context.startActivity(i);
             } catch (Exception e) {
                 System.out.println("something went wrong: " + e);

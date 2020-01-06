@@ -90,7 +90,7 @@ public class TMDB {
         client.get(url, rp, handler);
     }
 
-    public void getMovieDetail(int id, AsyncHttpResponseHandler handler) {
+    public void getMovieDetail(String id, AsyncHttpResponseHandler handler) {
         String url = MOVIE_BASE_URL + MOVIE_DETAIL_PREFIX + id;
         client.get(url, new RequestParams(), handler);
     }

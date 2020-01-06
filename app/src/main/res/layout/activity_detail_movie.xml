@@ -214,7 +214,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="@string/plot_content"
+                        android:text="@string/n_a"
                         android:textSize="18sp" />
                 </com.robertlevonyan.views.expandable.Expandable>
 
@@ -350,7 +350,30 @@
                                 android:id="@+id/BoxOfficeNumber"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="N/A"
+                                android:text="@string/n_a"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/Budget"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/BudgetTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/budget"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/BudgetNumber"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/n_a"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
@@ -378,7 +401,7 @@
                                     android:id="@+id/AwardNames"
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="N/A"
+                                    android:text="@string/n_a"
                                     android:textSize="18sp" />
                             </LinearLayout>
 

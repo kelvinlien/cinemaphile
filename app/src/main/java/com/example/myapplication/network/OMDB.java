@@ -12,6 +12,7 @@ public class OMDB {
     private static final String BASE_URL = "http://www.omdbapi.com/";
     private static final String API_KEY = "61222a7d";
     private static final String MOVIE_NAME_PARA = "t";
+    private static final String MOVIE_ID_PARA = "i";
     private static final String API_KEY_PARA = "apikey";
     private static OMDB instance;
     private AsyncHttpClient client;
@@ -40,8 +41,15 @@ public class OMDB {
     }
 
 
-    public void getMovieDetail(String movie_name, AsyncHttpResponseHandler handler) {
+    public void getMovieDetailByName(String movie_name, AsyncHttpResponseHandler handler) {
+        rp.remove(MOVIE_ID_PARA);
         rp.put(MOVIE_NAME_PARA, movie_name);
+        client.get(BASE_URL, rp, handler);
+    }
+
+    public void getMovieDetailByID(String imdb_id, AsyncHttpResponseHandler handler) {
+        rp.remove(MOVIE_NAME_PARA);
+        rp.put(MOVIE_ID_PARA, imdb_id);
         client.get(BASE_URL, rp, handler);
     }
 

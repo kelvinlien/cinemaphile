@@ -17,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +28,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private HomeAdapter mAdapter;
-    private List<movie_item> movieList;
+    private ArrayList<movie_item> movieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +69,12 @@ public class SearchResultsActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     mMovies = TMDB.getInstance().processResults(response);
+                    mAdapter = new HomeAdapter(mMovies, getApplicationContext());
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                SearchResultsActivity.this.runOnUiThread(() -> {
-                    mAdapter = new HomeAdapter(mMovies, getApplicationContext());
-                    mRecyclerView.setAdapter(mAdapter);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
-                    mRecyclerView.setLayoutManager(layoutManager);
-                    mRecyclerView.setHasFixedSize(true);
-                });
             }
         });
     }
