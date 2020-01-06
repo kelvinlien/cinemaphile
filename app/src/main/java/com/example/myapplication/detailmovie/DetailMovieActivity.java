@@ -2,6 +2,8 @@ package com.example.myapplication.detailmovie;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -160,7 +162,7 @@ public class DetailMovieActivity extends Activity {
                         String boxoffice = serverResp.getString("BoxOffice");
                         String awards = serverResp.getString("Awards");
 //                        OMDB.getInstance().getImage(poster, Poster);
-                        TMDB.getInstance().getImage(tmdb_poster_path, 3, Poster);
+                        TMDB.getInstance().getImage(tmdb_poster_path, 5, Poster);
                         String[] temp = runtime.split(" ");
                         int hours = Integer.parseInt(temp[0]) / 60;
                         int minutes = Integer.parseInt(temp[0]) % 60;
@@ -176,11 +178,11 @@ public class DetailMovieActivity extends Activity {
                         BoxOffice.setText(boxoffice);
                         Budget.setText(tmdb_budget);
                         Awards.setText(awards);
+                        container.stopShimmer();
+                        container.hideShimmer();
                     } else {
                         checkResponse(res);
                     }
-                    container.stopShimmer();
-                    container.hideShimmer();
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -196,7 +198,9 @@ public class DetailMovieActivity extends Activity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                TMDB.getInstance().getImage(tmdb_poster_path, 2, Poster);
+                ShimmerFrameLayout container =
+                        findViewById(R.id.shimmer_view_container);
+                TMDB.getInstance().getImage(tmdb_poster_path, 5, Poster);
                 MovieName.setText(movie_name);
                 Year.setText(tmdb_year);
                 IMDbCard.setVisibility(View.GONE);
@@ -206,6 +210,8 @@ public class DetailMovieActivity extends Activity {
                 setCategoryChips(tmdb_genre_array);
                 Plot.setText(tmdb_overview);
                 Budget.setText(tmdb_budget);
+                container.stopShimmer();
+                container.hideShimmer();
             }
         });
     }
@@ -246,6 +252,7 @@ public class DetailMovieActivity extends Activity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                checkResponse("False");
             }
         });
     }
@@ -263,14 +270,12 @@ public class DetailMovieActivity extends Activity {
 
     protected void checkResponse(String res) {
         if (res.equals("False")) {
-            alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("Not found");
-            alertDialog.setMessage("Movie name not found!");
-            // Set the Icon for the Dialog
-            alertDialog.setButton("Back", (dialog, which) -> {
-                // TODO Add your code for the button here.   }
-            });
-            alertDialog.show();
+            AlertDialog alert = new AlertDialog.Builder(this).create();
+            alert.setTitle("Not found");
+            alert.setMessage("Sorry! We can't find the movie you're looking for.");
+            alert.setButton(Dialog.BUTTON_NEUTRAL,"OK", (dialog, which) -> finish());
+
+            alert.show();
         }
     }
 

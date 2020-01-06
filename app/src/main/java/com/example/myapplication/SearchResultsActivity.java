@@ -3,6 +3,9 @@ package com.example.myapplication;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -70,6 +73,12 @@ public class SearchResultsActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     mMovies = TMDB.getInstance().processResults(response);
+                    if (mMovies.isEmpty())
+                    {
+                        RelativeLayout rv = findViewById(R.id.search_result);
+                        TextView tv = findViewById(R.id.not_found);
+                        tv.setVisibility(View.VISIBLE);
+                    }
                     mAdapter = new HomeAdapter(mMovies, getApplicationContext());
                     mRecyclerView.setAdapter(mAdapter);
                     mAdapter.notifyDataSetChanged();
