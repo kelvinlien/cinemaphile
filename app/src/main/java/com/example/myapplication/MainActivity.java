@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());//viewpager adapater
         //adding Fragment
 
-        viewPagerAdapter.AddFragment(new FragmentTopRatedMovie(), "news");
-        viewPagerAdapter.AddFragment(new FragmentTrendingMovie(), "movie");
+        viewPagerAdapter.AddFragment(new FragmentTopRatedMovie(),"Top Rated");
+        viewPagerAdapter.AddFragment(new FragmentTrendingMovie(),"Trending");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);//set view pager for tablayout

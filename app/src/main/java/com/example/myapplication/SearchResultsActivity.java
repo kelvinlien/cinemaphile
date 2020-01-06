@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
+
 public class SearchResultsActivity extends AppCompatActivity {
     public static final String TAG = SearchResultsActivity.class.getSimpleName();
     public ArrayList<movie_item> mMovies = new ArrayList<>();
@@ -36,7 +37,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_title_search_results);
         ButterKnife.bind(this);
         movieList = new ArrayList<>();
-        mAdapter = new HomeAdapter(mMovies, getApplicationContext());
+        mAdapter = new HomeAdapter(mMovies);
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchResultsActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);

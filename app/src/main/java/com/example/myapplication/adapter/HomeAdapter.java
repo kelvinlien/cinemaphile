@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
 import com.example.myapplication.detailmovie.DetailMovieActivity;
 import com.example.myapplication.model.movie_item;
@@ -38,6 +37,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.movieResults = results;
         this.context = context;
     }
+    public HomeAdapter(ArrayList<movie_item> results) {
+        this.movieResults = results;
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
@@ -59,24 +61,27 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
         View v1 = inflater.inflate(R.layout.movie_item, parent, false);
-        Button detailButton = (Button) v1.findViewById(R.id.btn_detail);
+        ImageButton detailButton = v1.findViewById(R.id.btn_detail);
         detailButton.setOnClickListener(v -> {
             try {
-                LinearLayout layout = (LinearLayout) v.getParent().getParent();
-                LinearLayout parentLinear = (LinearLayout) v.getParent().getParent().getParent();
-                TextView ID = parentLinear.findViewById(R.id.movie_id);
-                String id = (String) ID.getText();
+
+                LinearLayout layout = (LinearLayout) v.getParent();
+                TextView Date = layout.findViewById(R.id.tv_date);
+                String date = (String) Date.getText();
+                layout = (LinearLayout) v.getParent().getParent();
                 TextView Title = layout.findViewById(R.id.tv_title);
                 String title = (String) Title.getText();
                 TextView Desc = layout.findViewById(R.id.tv_desc);
                 String overview = (String) Desc.getText();
-                TextView Date = layout.findViewById(R.id.tv_date);
-                String date = (String) Date.getText();
+                layout = (LinearLayout) v.getParent().getParent().getParent();
+                TextView ID = layout.findViewById(R.id.movie_id);
+                String id = (String) ID.getText();
                 Intent i = new Intent(context, DetailMovieActivity.class);
                 i.putExtra("title", title);
                 i.putExtra("id", id);
                 i.putExtra("overview", overview);
                 i.putExtra("date", date);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             } catch (Exception e) {
                 System.out.println("something went wrong: " + e);
@@ -189,9 +194,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         TextView tvDate;
 
-        Button btnDetail;
+        ImageButton btnDetail;
 
-        Button btnShare;
 
         public MovieVH(@NonNull View itemView) {
             super(itemView);
@@ -201,7 +205,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvDesc = itemView.findViewById(R.id.tv_desc);
             tvDate = itemView.findViewById(R.id.tv_date);
             btnDetail = itemView.findViewById(R.id.btn_detail);
-            btnShare = itemView.findViewById(R.id.btn_share);
         }
 
 
@@ -225,13 +228,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return tvDate;
         }
 
-        public Button getBtnDetail() {
+        public ImageButton getBtnDetail() {
             return btnDetail;
         }
 
-        public Button getBtnShare() {
-            return btnShare;
-        }
     }
 
     class LoadingVH extends RecyclerView.ViewHolder {

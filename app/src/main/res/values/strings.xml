@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CinemaPhile</string>
+    <string name="app_name">Cinemaphile</string>
     <string name="results_activity_label">result_search</string>
     <string name="search">Search</string>
     <string name="hint_search">Enter Keyword</string>

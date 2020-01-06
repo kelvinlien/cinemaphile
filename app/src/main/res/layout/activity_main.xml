@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0C0C0C"
         app:tabGravity="fill"
-        app:tabIndicator="@color/tabIndicatorColor"
+        app:tabIndicatorColor="@color/tabIndicatorColor"
         app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_color_selector"
+        app:tabSelectedTextColor="@color/tabSeclect"
         app:tabTextColor="@color/tabTextColor" />
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager_id"
         android:layout_width="match_parent"
